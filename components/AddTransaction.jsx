@@ -63,11 +63,9 @@ export default function AddTransaction() {
         let sourceSideContract = process.env.NEXT_PUBLIC_SOURCE_SIDE_CONTRACT_ADDRESS
         let contract = await getContract(sourceSideContract)
 
-        ethereum.enable()
-        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' }).then(async (accounts) =>  {
+          await switchNetwork()        
         
-        await switchNetwork()
-
         let encodedABI = contract.methods.transfer(token, destinationInput, 
           value, 10).encodeABI()
         
@@ -153,6 +151,12 @@ export default function AddTransaction() {
           }).catch((error) => console.error(error));
 
           setloading(false)
+
+        }).catch((error) => {
+          console.error(error)
+          setloading(false)
+          return
+        });
     }
 
     let switchNetwork = async (e) => {

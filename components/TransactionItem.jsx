@@ -48,7 +48,8 @@ const TransactionItem = ({ transaction, transactionHash, isClaimed, tokens, clai
     let destinationSideContract = process.env.NEXT_PUBLIC_DESTINATION_SIDE_CONTRACT_ADDRESS
     let contract =  await getContract(destinationSideContract)
 
-    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' }).then(async (accounts) =>  {
+      await switchNetwork()
 
     let encodedABI = contract.methods.claim(d).encodeABI()
 
@@ -144,7 +145,49 @@ const TransactionItem = ({ transaction, transactionHash, isClaimed, tokens, clai
     }
     
     setloading(false)
+    }).catch((error) => {
+      console.error(error)
+      setloading(false)
+      return
+    });
   }
+
+  let switchNetwork = async (e) => {
+    const web3 = await getWeb3()
+    
+    // Get the current chain id
+    const chainid = parseInt(await web3.eth.getChainId())
+
+    if (ethereum.networkVersion != 69) {
+        try {
+            await ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: web3.utils.toHex(69) }],
+            });
+          } catch (switchError) {
+            // This error code indicates that the chain has not been added to MetaMask.
+            if (switchError.code === 4902) {
+              try {
+                await ethereum.request({
+                  method: 'wallet_addEthereumChain',
+                  params: [
+                    {
+                        chainId: web3.utils.toHex(69),
+                        chainName: 'Optimism Kovan',
+                        rpcUrls: ['https://kovan.optimism.io'],
+                        blockExplorerUrls: ['https://kovan-optimistic.etherscan.io'],
+                    },
+                  ],
+                });
+              } catch (addError) {
+                console.log(addError)
+              }
+            }
+            // handle other "switch" errors
+          }
+    }
+}
+
 
   return (
     <tr className='h-[80px] border-b'>
