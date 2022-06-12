@@ -122,7 +122,8 @@ const Transactions = () => {
             // })
             .map((transaction, index) => (
               <TransactionItem key={transactionHashs[index]} transactionHash={transactionHashs[index]} transaction={transaction}
-              isClaimed={(claimedTransactionNonces.includes(transactions[index][6]))} tokens={tokens} claimedTransactionHash={claimedTransactionHashs[index]}/>
+              isClaimed={(claimedTransactionNonces.includes(transactions[index][6]))} tokens={tokens} 
+              claimedTransactionHash={claimedTransactionHashs[claimedTransactionNonces.indexOf(transactions[index][6])]}/>
             )).reverse()}
         </tbody>
       </table>

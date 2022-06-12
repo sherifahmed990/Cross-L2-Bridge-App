@@ -13,7 +13,7 @@ export default function Navbar() {
         setNav(!nav);
     };
   return (
-    <div className='rounded-div flex items-center justify-between h-20 font-bold'>
+    <div className='rounded-div flex items-center justify-between h-20 font-bold sticky top-0 z-50' style={{ backgroundColor: '#ecf0f3' }}>
         <img src="bridge.png" alt='/' width='80' height='80' />
           <h1 className='text-2xl m-2'>Cross L2 Bridge Between Rollups</h1>
         {/* <div className='hidden md:block'>
@@ -43,7 +43,7 @@ export default function Navbar() {
             ? 'md:hidden fixed left-0 top-20 flex flex-col items-center justify-between w-full h-[90%] bg-primary ease-in duration-300 z-10 bg-white'
             : 'fixed left-[-100%] top-20 h-[90%] flex flex-col items-center justify-between ease-in duration-30'
         }
-      >
+        style={{ backgroundColor: '#ecf0f3' }}>
         <ul className='w-full p-4'>
           <li onClick={handleNav} className='border-b py-6'>
             <Link href='/'>Home</Link>

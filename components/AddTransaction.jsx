@@ -195,7 +195,7 @@ export default function AddTransaction() {
     return (
         <div className='rounded-div my-4'>
           <div className='flex flex-col md:flex-row justify-between pt-4 pb-6 text-left md:text-left'>
-            <h1 className='text-2xl font-bold my-2'>Send Ether and Tokens</h1>
+            <h1 className='text-2xl font-bold my-2'>Send Ether and Tokens (Optimistic Kovan --> Optimistic Kovan)</h1><br/>  
           </div>
             <form className='w-[90%] border-collapse m-4' onSubmit={(e) => setWithdrawal(e)} noValidate>
                 <div className="mb-4">

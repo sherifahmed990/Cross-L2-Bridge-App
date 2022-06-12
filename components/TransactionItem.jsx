@@ -14,6 +14,7 @@ const TransactionItem = ({ transaction, transactionHash, isClaimed, tokens, clai
 
   const [loading, setloading] = useState(false);
   const [claimed, setClaimed] = useState(isClaimed);
+  const [claimedTh, setClaimedTh] = useState(claimedTransactionHash);
 
   let provideLiquidity = async (e) => {
     const ethereum = await getEthereum()
@@ -136,6 +137,7 @@ const TransactionItem = ({ transaction, transactionHash, isClaimed, tokens, clai
         method: 'eth_sendTransaction',
         params: [tx]
       })
+      setClaimedTh(sentTx)
       setClaimed(true)
     }catch(error){
       console.error(error)
@@ -147,16 +149,16 @@ const TransactionItem = ({ transaction, transactionHash, isClaimed, tokens, clai
   return (
     <tr className='h-[80px] border-b'>
       <td className='px-4 py-2'><img src={tokens[transaction[0]]} alt='/' width='40' height='40' /></td>
-      {/* <td className='px-4 py-2 hidden md:table-cell underline'><Link href={`https://kovan-optimistic.etherscan.io/tx/${transactionHash}`}>{transaction[1]}</Link></td> */}
-      <td className='px-4 py-2 hidden md:table-cell'>{transaction[1]}</td>
+      <td className='px-4 py-2 hidden md:table-cell underline'><Link href={`https://kovan-optimistic.etherscan.io/tx/${transactionHash}`}><a target="_blank">{transaction[1]}</a></Link></td>
+      {/* <td className='px-4 py-2 hidden md:table-cell'>{transaction[1]}</td> */}
       <td className='px-4 py-2'>{transaction[2]}</td>
       <td className='px-4 py-2'>{transaction[3]}</td>
-      <td className='px-4 py-2'>
+      <td className='px-4 py-2 underline'>
       {(claimed)?
         
         <p className="ml-3 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium leading-4 bg-green-150 text-green-500">
-          {/* <Link href={`https://kovan-optimistic.etherscan.io/tx/${claimedTransactionHash}`}>Claimed</Link> */}
-          Claimed
+          <Link href={`https://kovan-optimistic.etherscan.io/tx/${claimedTh}`}><a target="_blank">Claimed</a></Link>
+          {/* Claimed */}
         </p>
         
         :
