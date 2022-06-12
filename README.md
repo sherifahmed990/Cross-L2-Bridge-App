@@ -1,7 +1,6 @@
 ## FrontEnd
-This is a front end for the <a href="https://github.com/sherifahmed990/Cross-Layer-2-Bridge">Cross Layer 2 Bridge</a>
-
-
+This is a Nextjs front end for the <a href="https://github.com/sherifahmed990/Cross-Layer-2-Bridge">Cross Layer 2 Bridge</a><br/>
+<a href="https://cross-l2-bridge-app.vercel.app/">Deployed App Link</a>
 ## Getting Started
 
 First, set ebv variables
