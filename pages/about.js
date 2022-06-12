@@ -21,7 +21,7 @@ export default function About() {
         <a className="mr-6 underline" href='https://gitcoin.co/issue/gitcoinco/skunkworks/253/100027342'>Gitcoin bounty</a>
         <a className="mr-6 underline" href='https://notes.ethereum.org/@vbuterin/cross_layer_2_bridges'>Document by @vbuterin descriping the bounty</a>
         <br/><br/>
-
+        <p>This project is a cross domain bridge to move ether and tokens between L2 networks(EVM compatible).</p><br/>
         <p>Currently the source and destination contract are both deployed on the optimistic kovan testnet as a proof of concept.</p>
         <br/>
         <p>The L1 contract is deployed on kovan testnet. All communication between the source and destination contract goes through the L1 contract.</p>

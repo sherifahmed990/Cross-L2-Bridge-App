@@ -55,14 +55,9 @@ export default function Navbar() {
           <div className='flex items-center justify-between max-w-[630px] m-auto py-4'>
         <p>Developer : Sherif Abdelmoatty</p> 
       
-            <a href='https://github.com/fireclint' target='_blank'>
+            <a href='https://github.com/sherifahmed990/' target='_blank'>
               <div className='rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
                 <FaGithub />
-              </div>
-            </a>
-            <a href='/#contact'>
-              <div className='rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                <AiOutlineMail />
               </div>
             </a>
 
