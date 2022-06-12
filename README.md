@@ -1,16 +1,15 @@
 ## FrontEnd
-This is a front end for the <a href="https://github.com/sherifahmed990/Cross-Layer-2-Bridge">Cross Layer 2 Bridge</a>
-
-
+This is a Nextjs frontend for the <a href="https://github.com/sherifahmed990/Cross-Layer-2-Bridge">Cross Layer 2 Bridge</a><br/>
+<a href="https://cross-l2-bridge-app.vercel.app/">Deployed App Link</a>
 ## Getting Started
 
 First, set ebv variables
 
-NEXT_PUBLIC_SOURCE_SIDE_CONTRACT_ADDRESS="0x4bC39CDa64831Fa385CFc855A28B24B3EEF86704"
-NEXT_PUBLIC_DESTINATION_SIDE_CONTRACT_ADDRESS="0x472D0CdC3336234b0685fcCbC5F5BC072eF6370B"
-INFURA_API_KEY
-ALCHEMY_API_KEY
-PRIVATE_KEY  (account with eth on optimistic kovan testnet)
+NEXT_PUBLIC_SOURCE_SIDE_CONTRACT_ADDRESS="0x4bC39CDa64831Fa385CFc855A28B24B3EEF86704"<br/>
+NEXT_PUBLIC_DESTINATION_SIDE_CONTRACT_ADDRESS="0x472D0CdC3336234b0685fcCbC5F5BC072eF6370B"<br/>
+INFURA_API_KEY<br/>
+ALCHEMY_API_KEY<br/>
+PRIVATE_KEY  (account with eth on optimistic kovan testnet)<br/>
 
 Second, run the development server:
 
