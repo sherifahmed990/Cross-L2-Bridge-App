@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     let contract = await getContract(destinationSideContract)
     try{
         let events = await contract.getPastEvents("Reward", { fromBlock: 1})
-        let rewardData = events.slice(0, 20).map((e) =>e['returnValues']["rewardData"]).reverse()
+        let rewardData = events.slice(0, 20).map((e) =>e['returnValues']["rewardData"])
 
         let sourceSideContract = process.env.NEXT_PUBLIC_SOURCE_SIDE_CONTRACT_ADDRESS
         const { ethers } = require("ethers");
