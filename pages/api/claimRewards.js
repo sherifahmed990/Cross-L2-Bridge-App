@@ -24,9 +24,9 @@ export default async function handler(req, res) {
         let contractWithSigner = contract2.connect(signerl1)
     
         
-        let tx = await contractWithSigner.processClaims(rewardData)
+        let tx = await contractWithSigner.processClaims(rewardData,{gasLimit: 1000000})
 
-        res.status(200).json(rewardData)
+        res.status(200).json({...rewardData, tx})
     }
     catch(e){
         console.log(e)

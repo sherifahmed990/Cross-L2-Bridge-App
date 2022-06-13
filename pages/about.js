@@ -26,9 +26,9 @@ export default function About() {
         <br/>
         <p>The L1 contract is deployed on kovan testnet. All communication between the source and destination contract goes through the L1 contract.</p>
         <br/>
-        <a className="mr-6 underline" href='https://kovan-optimistic.etherscan.io/address/0x4bC39CDa64831Fa385CFc855A28B24B3EEF86704'>Deployed Source Contract(Optimistic Kovan)</a><br/><br/>
-        <a className="mr-6 underline" href='https://kovan-optimistic.etherscan.io/address/0x472D0CdC3336234b0685fcCbC5F5BC072eF6370B'>Deployed Destination Contract(Optimistic Kovan)</a><br/><br/>
-        <a className="mr-6 underline" href='https://kovan.etherscan.io/address/0x76Df34f51d6bE45F3bC300317E595333bf6F5708'>Deployed L1 Contract(Kovan)</a><br/><br/>
+        <a className="mr-6 underline" href='https://kovan-optimistic.etherscan.io/address/0x6Fa32eE1871631717b7898A8C41Bc851Bf07b3e5'>Deployed Source Contract(Optimistic Kovan)</a><br/><br/>
+        <a className="mr-6 underline" href='https://kovan-optimistic.etherscan.io/address/0x2A22D002f4BBA380502071E0D152d5D10A5281B5'>Deployed Destination Contract(Optimistic Kovan)</a><br/><br/>
+        <a className="mr-6 underline" href='https://kovan.etherscan.io/address/0xF3A7EDf172C66427D8284f19f6c62Be1a738Fb33'>Deployed L1 Contract(Kovan)</a><br/><br/>
         <a className="mr-6 underline" href='https://github.com/sherifahmed990/Cross-Layer-2-Bridge/'>Project Github Link</a><br/><br/>
 
         <div className='flex items-center max-w-[630px] m-auto py-4'>
