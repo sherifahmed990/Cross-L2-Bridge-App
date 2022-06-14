@@ -27,10 +27,11 @@ export default function AddTransaction() {
 
     let handleBlurAmount = (value)=>{
       if(isNumeric(value) && value >= 1000 && value <= 1000000000000000){
-        setAmount(value)
+        setAmount(Math.floor(value/1000)*1000)
         setAmountValid("hidden")
       }else{
         setAmount(1000)
+        setAmountValid("")
       }
     }
 
@@ -67,7 +68,7 @@ export default function AddTransaction() {
           await switchNetwork()        
         
         let encodedABI = contract.methods.transfer(token, destinationInput, 
-          value, 10).encodeABI()
+          value, 0, 0).encodeABI()
         
         var tx = {
             from: accounts[0],
@@ -214,7 +215,7 @@ export default function AddTransaction() {
                 </div>
                 <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Amount(in Wei)
+                    Amount in Wei (rounded to 1000 wei)
                 </label><p className={`text-red-500 text-xs italic  ${amountInputValid}`}>Min 1000 wei , Max 1000000000000000</p>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" min='1000' placeholder="Amount in Wei"
                 value={amountInput}

@@ -20,8 +20,8 @@ export default function Home() {
         <link rel="icon" href="/bridge.png" />
       </Head>
       <Navbar />
-        <AddTransaction />
-        <Transactions/>
+      <AddTransaction />
+      <Transactions/>
     </div>
   )
 }

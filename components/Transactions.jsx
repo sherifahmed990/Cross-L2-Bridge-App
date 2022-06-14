@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import TransactionItem from './TransactionItem';
 import {getContract} from "../utils/getContract"
+import Link from 'next/link';
+import { HiOutlineChevronDoubleUp } from 'react-icons/hi';
+
 
 const Transactions = () => {
   const[transactions, setTransactions] = useState([]);
@@ -77,7 +80,7 @@ const Transactions = () => {
     
   }, [])
 
-  return (
+  return (<div>
     <div className='rounded-div my-4'>
       <div className='flex flex-col md:flex-row justify-between pt-4 pb-6 text-center md:text-right'>
         <h1 className='text-2xl font-bold my-2'>Latest Transactions</h1>
@@ -127,7 +130,18 @@ const Transactions = () => {
             )).reverse()}
         </tbody>
       </table>
+
+     
+
     </div>
+    <div className='flex justify-center py-12'>
+          <Link href='/'>
+            <div className='rounded-full shadow-lg shadow-gray-400 p-4 cursor-pointer hover:scale-110 ease-in duration-300'>
+              <HiOutlineChevronDoubleUp className='text-[#5651e5]' size={30} />
+            </div>
+          </Link>
+        </div>
+        </div>
   );
 };
 

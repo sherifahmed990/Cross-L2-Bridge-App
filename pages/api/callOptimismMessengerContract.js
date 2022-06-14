@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         l1SignerOrProvider: signerl1, 
         l2SignerOrProvider: signerl2
     })
-    const hash = "0xcbfd4ed61d7e3a54c3622c3f00591137c7939e12aba0ba5b144c2286c9562346"
+    const hash = "0x4fae43f5b8626ef6a79b76209d6287c2335d7bcb78ee811ceb0425f7633899ee"
 
     try{
         const c = await crossChainMessenger.getMessageStatus(hash)
