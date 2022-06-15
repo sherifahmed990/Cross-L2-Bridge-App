@@ -10,7 +10,7 @@ import { GlobalContext } from '../context/GlobalState';
 export default function AddTransaction() {
 
     const [token, setToken] = useState("0x0000000000000000000000000000000000000000");
-    const [amountInput, setAmount] = useState(1000);
+    const [amountInput, setAmount] = useState(1);
     const [destinationInput, setDestination] = useState('');
     const [amountInputValid, setAmountValid] = useState("hidden");
     const [destinationInputValid, setDestinationValid] = useState("hidden");
@@ -19,18 +19,18 @@ export default function AddTransaction() {
     
     let handleAmount = (value)=>{
         if(isNumeric(value)){
-          setAmount(parseInt(value)===0 || parseInt(value) > 1000000000000000?amountInput:value)
+          setAmount(parseInt(value)===0 || parseInt(value) > 1000000000000?amountInput:value)
         }else if(value === "" || value === "-"){
           setAmount("")
         }
     }
 
     let handleBlurAmount = (value)=>{
-      if(isNumeric(value) && value >= 1000 && value <= 1000000000000000){
-        setAmount(Math.floor(value/1000)*1000)
+      if(isNumeric(value) && value >= 1 && value <= 1000000000000){
+        setAmount(value)
         setAmountValid("hidden")
       }else{
-        setAmount(1000)
+        setAmount(1)
         setAmountValid("")
       }
     }
@@ -206,22 +206,24 @@ export default function AddTransaction() {
                 <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
                 Destination Address
-                </label><p className={`text-red-500 text-xs italic ${destinationInputValid}`}>Please fill out this field with a valid address.</p>
+                </label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Destination Address"
                 value={destinationInput}
                 onChange={(e) => setDestination(e.target.value)}
                 onBlur={(e) => handleBlurDestination(e.target.value)} 
                 required/>
+                <p className={`text-red-500 text-xs italic ${destinationInputValid}`}>Please fill out this field with a valid address.</p>
                 </div>
                 <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Amount in Wei (rounded to 1000 wei)
-                </label><p className={`text-red-500 text-xs italic  ${amountInputValid}`}>Min 1000 wei , Max 1000000000000000</p>
+                    Amount in Kwei <p className={`text-blue-500 text-xs italic`}>Kwei = 1000 Wei</p>
+                </label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" min='1000' placeholder="Amount in Wei"
                 value={amountInput}
                 onChange={(e) => handleAmount(e.target.value)}
                 onBlur={(e) => handleBlurAmount(e.target.value)} 
                 required/>
+                <p className={`text-red-500 text-xs italic  ${amountInputValid}`}>Min 1 Kwei , Max 1000000000000 Kwei</p>
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
