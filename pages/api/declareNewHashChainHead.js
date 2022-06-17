@@ -3,8 +3,9 @@
 export default async function handler(req, res) {
     let destinationSideContract = process.env.NEXT_PUBLIC_DESTINATION_SIDE_CONTRACT_ADDRESS
     const { ethers } = require("ethers");
-    const apiKey = process.env.INFURA_API_KEY
-    const provider = new ethers.providers.InfuraProvider("optimism-kovan", apiKey)
+    // const apiKey = process.env.INFURA_API_KEY
+    const apiKey = process.env.ALCHEMY_API_KEY
+    const provider = new ethers.providers.AlchemyProvider("optimism-kovan", apiKey)
 
     const private_key = process.env.PRIVATE_KEY
     const signerl1 = new ethers.Wallet(private_key, provider);

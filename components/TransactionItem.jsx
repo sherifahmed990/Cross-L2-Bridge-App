@@ -17,8 +17,15 @@ const TransactionItem = ({ transaction, transactionHash, isClaimed, tokens, clai
   const [claimedTh, setClaimedTh] = useState(claimedTransactionHash);
 
   let provideLiquidity = async (e) => {
+    setloading(true)
+
     const ethereum = await getEthereum()
     
+    if(!ethereum){
+      setloading(false)
+      return
+    }
+
     const web3 = await getWeb3()
     let t = await web3.eth.getTransactionReceipt(transactionHash)
 
@@ -59,7 +66,7 @@ const TransactionItem = ({ transaction, transactionHash, isClaimed, tokens, clai
         data: encodedABI,
     };
 
-    setloading(true)
+    // setloading(true)
     const token = d[0]
 
     if(token !== '0x0000000000000000000000000000000000000000'){      

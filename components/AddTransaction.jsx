@@ -15,10 +15,16 @@ export default function AddTransaction() {
     const [amountInputValid, setAmountValid] = useState("hidden");
     const [destinationInputValid, setDestinationValid] = useState("hidden");
     const [loading, setloading] = useState(false);
+    // const [success, setSuccess] = useState(false);
+    // const [successMessage, setSuccessMessage] = useState(false);
+    // const [noWallet, setNoWallet] = useState(true);
+    const [isError, setisError] = useState(false);
+    const [errorMessage, SetErrorMessage] = useState(false);
 
     
     let handleAmount = (value)=>{
         if(isNumeric(value)){
+          value = Math.floor(value)
           setAmount(parseInt(value)===0 || parseInt(value) > 1000000000000?amountInput:value)
         }else if(value === "" || value === "-"){
           setAmount("")
@@ -53,13 +59,26 @@ export default function AddTransaction() {
 
     let setWithdrawal = async (e) => {
         e.preventDefault()
+        
+        
+        const ethereum = await getEthereum()
+        if(ethereum){
+          setisError(false)
+          // setNoWallet(false)
+        }else{
+          setisError(true)
+          // setNoWallet(true)
+          SetErrorMessage("Please install a wallet like Metamask.")
+        }
+        
         if(destinationInputValid != "hidden" || destinationInput == "")
             return
 
         setloading(true)
+        // setSuccess(false)
 
-        const value = parseInt(amountInput/1000)
-        const ethereum = await getEthereum()
+        const value = parseInt(amountInput)
+        
         const web3 = await getWeb3()
         let sourceSideContract = process.env.NEXT_PUBLIC_SOURCE_SIDE_CONTRACT_ADDRESS
         let contract = await getContract(sourceSideContract)
@@ -149,12 +168,19 @@ export default function AddTransaction() {
             params: [tx],
           }).then((result) =>  {
             setloading(false)
-          }).catch((error) => console.error(error));
-
-          setloading(false)
-
+            // setSuccess(true)
+            // setSuccessMessage(result)
+          }).catch((error) => {
+            console.error(error)
+            setloading(false)
+            setisError(true)
+            SetErrorMessage(error.message)
+            console.log(error.message)
+          });
         }).catch((error) => {
           console.error(error)
+          setisError(true)
+          SetErrorMessage(error.message)
           setloading(false)
           return
         });
@@ -202,6 +228,14 @@ export default function AddTransaction() {
           <div className='flex flex-col md:flex-row justify-between pt-4 pb-6 text-left md:text-left'>
             <h1 className='text-2xl font-bold my-2'>Send Ether and Tokens (Optimistic Kovan --> Optimistic Kovan)</h1><br/>  
           </div>
+          {/* {(success)?
+          <div className="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
+            <span className="font-medium">Info alert!</span> {`${successMessage}`}
+          </div>:""} */}
+          {(isError)?
+          <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+            <span className="font-medium">Alert!</span> {`${errorMessage}`}
+          </div>:""}
             <form className='w-[90%] border-collapse m-4' onSubmit={(e) => setWithdrawal(e)} noValidate>
                 <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -218,7 +252,7 @@ export default function AddTransaction() {
                 <label className="block text-gray-700 text-sm font-bold mb-2">
                     Amount in Kwei <p className={`text-blue-500 text-xs italic`}>Kwei = 1000 Wei</p>
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" min='1000' placeholder="Amount in Wei"
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="Amount in Wei"
                 value={amountInput}
                 onChange={(e) => handleAmount(e.target.value)}
                 onBlur={(e) => handleBlurAmount(e.target.value)} 
@@ -251,9 +285,12 @@ export default function AddTransaction() {
                     Processing...
                 </button> 
                 :
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+               
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+                type="submit">
                     Send
                 </button>
+               
                 }
                 </div>
             </form>

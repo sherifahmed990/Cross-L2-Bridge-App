@@ -4,12 +4,13 @@ export default async function handler(req, res) {
     const sdk = require("@eth-optimism/sdk")
     const { ethers } = require("ethers");
 
-    const apiKey = process.env.INFURA_API_KEY
-    const providerl1 = new ethers.providers.InfuraProvider("kovan", apiKey)
+    // const apiKey = process.env.INFURA_API_KEY
+    const apiKey = process.env.ALCHEMY_API_KEY
+    const providerl1 = new ethers.providers.AlchemyProvider("kovan", apiKey)
     const private_key = process.env.PRIVATE_KEY
     const signerl1 = new ethers.Wallet(private_key, providerl1);
 
-    const providerl2 = new ethers.providers.InfuraProvider("optimism-kovan", apiKey)
+    const providerl2 = new ethers.providers.AlchemyProvider("optimism-kovan", apiKey)
     const signerl2 = new ethers.Wallet(private_key, providerl2);
 
 
