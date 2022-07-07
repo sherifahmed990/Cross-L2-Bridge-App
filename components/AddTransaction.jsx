@@ -226,7 +226,7 @@ export default function AddTransaction() {
     return (
         <div className='rounded-div my-4'>
           <div className='flex flex-col md:flex-row justify-between pt-4 pb-6 text-left md:text-left'>
-            <h1 className='text-2xl font-bold my-2'>Send Ether and Tokens (Optimistic Kovan --> Optimistic Kovan)</h1><br/>  
+            <h1 className='text-2xl font-bold my-2'>Send Ether and Tokens (Optimistic Kovan -- Optimistic Kovan)</h1><br/>  
           </div>
           {/* {(success)?
           <div className="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">

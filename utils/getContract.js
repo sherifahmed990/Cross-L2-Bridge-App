@@ -1,8 +1,8 @@
-import {getWeb3} from "./getWeb3"
+import {getWeb3, getWeb3Wss} from "./getWeb3"
 
-let getContract = async (address) => {
+let getContract = async (address, isWss=false) => {
     // Load a deployed contract instance into a web3 contract object
-    const web3 = await getWeb3()
+    const web3 = isWss?await getWeb3Wss():await getWeb3()
 
     // Load the artifact with the specified address
     let contractArtifact

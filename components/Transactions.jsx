@@ -40,7 +40,7 @@ const Transactions = () => {
 
     async function registerNewTransactions(){
       let sourceSideContract = process.env.NEXT_PUBLIC_SOURCE_SIDE_CONTRACT_ADDRESS
-      let contract = await getContract(sourceSideContract)
+      let contract = await getContract(sourceSideContract, true)
       
       contract.events.Transaction({
         fromBlock: "latest"
