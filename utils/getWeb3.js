@@ -2,7 +2,8 @@ import Web3 from "web3";
 export const getWeb3 = async () => {
 
     const provider = new Web3.providers.HttpProvider(
-        process.env.WEB3_HTTPS_PROVIDER);
+        "https://kovan.optimism.io"
+        );
 
     const web3 = new Web3(provider)
 
@@ -12,7 +13,8 @@ export const getWeb3 = async () => {
 export const getWeb3Wss = async () => {
 
     const provider = new Web3.providers.WebsocketProvider(
-       process.env.WEB3_WSS_PROVIDER);
+       "wss://opt-kovan.g.alchemy.com/v2/IIjE38jVk-Te-q7JNunlLtMDTPzP3_ux"
+       );
 
 
     const web3 = new Web3(provider)
